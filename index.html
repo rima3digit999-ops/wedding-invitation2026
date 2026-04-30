@@ -15,130 +15,125 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* FRAME UTAMA */
+/* CONTAINER */
 .container {
   max-width: 420px;
   margin: auto;
-  background: #fdfaf6;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  background: linear-gradient(#fdfaf6, #f3efe9);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  border-radius: 25px;
   overflow: hidden;
-  border-radius: 20px;
+  position: relative;
 }
 
-/* HERO FOTO */
+/* ORNAMEN BACKGROUND */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(201,169,106,0.15), transparent);
+  pointer-events: none;
+}
+
+/* HERO */
 .hero {
-  position: relative;
-  height: 420px;
+  height: 460px;
   background: url('foto-kita.jpg') center/cover;
+  position: relative;
 }
 
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.75));
 }
 
 /* TEXT HERO */
 .hero-text {
   position: absolute;
-  bottom: 30px;
+  bottom: 40px;
   width: 100%;
   text-align: center;
   color: white;
   z-index: 2;
+  animation: fadeUp 2s ease;
 }
 
 .hero-text h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 38px;
+  font-size: 40px;
   margin: 0;
 }
 
 .hero-text p {
-  font-size: 14px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  font-size: 13px;
 }
 
 /* SECTION */
 .section {
-  padding: 30px 25px;
+  padding: 35px 25px;
   text-align: center;
+  animation: fadeUp 1.5s ease;
 }
 
-/* ORNAMEN GARIS */
+/* DIVIDER GOLD */
 .divider {
-  width: 60px;
+  width: 70px;
   height: 2px;
-  background: #c9a96a;
+  background: linear-gradient(to right, transparent, #c9a96a, transparent);
   margin: 15px auto;
 }
 
-/* TEXT ARAB */
+/* ARABIC */
 .arab {
-  font-family: serif;
   font-size: 18px;
   color: #c9a96a;
 }
 
-/* CARD */
-.card {
-  margin-top: 20px;
-}
-
-.card h2 {
+/* NAMA */
+.nama {
   font-family: 'Playfair Display', serif;
-  margin: 5px 0;
+  font-size: 26px;
 }
 
 /* COUNTDOWN */
 .countdown {
   margin-top: 10px;
   font-weight: bold;
-  color: #444;
 }
 
-/* FOOTER */
-.footer {
-  padding: 20px;
-  font-size: 14px;
-  color: #777;
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 12px 20px;
+  background: linear-gradient(45deg, #2c3e2f, #3a5a40);
+  color: white;
+  border-radius: 12px;
+  text-decoration: none;
+  margin-top: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ORNAMEN SUDUT */
+/* CORNER ORNAMEN */
 .corner {
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border: 2px solid #c9a96a;
+  opacity: 0.6;
 }
 
-.top-left {
-  top: 10px;
-  left: 10px;
-  border-right: none;
-  border-bottom: none;
-}
+.top-left { top: 15px; left: 15px; border-right:none; border-bottom:none;}
+.top-right { top: 15px; right: 15px; border-left:none; border-bottom:none;}
+.bottom-left { bottom: 15px; left: 15px; border-right:none; border-top:none;}
+.bottom-right { bottom: 15px; right: 15px; border-left:none; border-top:none;}
 
-.top-right {
-  top: 10px;
-  right: 10px;
-  border-left: none;
-  border-bottom: none;
-}
-
-.bottom-left {
-  bottom: 10px;
-  left: 10px;
-  border-right: none;
-  border-top: none;
-}
-
-.bottom-right {
-  bottom: 10px;
-  right: 10px;
-  border-left: none;
-  border-top: none;
+/* ANIMASI */
+@keyframes fadeUp {
+  from {opacity:0; transform: translateY(30px);}
+  to {opacity:1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -147,11 +142,11 @@ body {
 
 <div class="container">
 
+  <div class="corner top-left"></div>
+  <div class="corner top-right"></div>
+
   <!-- HERO -->
   <div class="hero">
-    <div class="corner top-left"></div>
-    <div class="corner top-right"></div>
-
     <div class="hero-text">
       <p>THE WEDDING OF</p>
       <h1>Ri & Fu</h1>
@@ -170,37 +165,33 @@ body {
 
   <!-- MEMPELAI -->
   <div class="section">
-    <div class="card">
-      <h2>Ri</h2>
-      <p>Putra dari Bapak ... & Ibu ...</p>
+    <div class="nama">Ri</div>
+    <p>Putra dari Bapak ... & Ibu ...</p>
 
-      <div class="divider"></div>
+    <div class="divider"></div>
 
-      <h2>Fu</h2>
-      <p>Putri dari Bapak ... & Ibu ...</p>
-    </div>
+    <div class="nama">Fu</div>
+    <p>Putri dari Bapak ... & Ibu ...</p>
   </div>
 
   <!-- ACARA -->
   <div class="section">
-    <h2>Jumat, 25 Agustus 2026</h2>
+    <div class="nama">Jumat, 25 Agustus 2026</div>
     <p>Akad & Resepsi 10.00 WIB</p>
     <div class="countdown" id="countdown"></div>
   </div>
 
   <!-- LOKASI -->
   <div class="section">
-    <a href="https://maps.app.goo.gl/nVPUV6W1P7WzZBEG8" target="_blank">
+    <a class="btn" href="https://maps.app.goo.gl/nVPUV6W1P7WzZBEG8" target="_blank">
       📍 Lihat Lokasi
     </a>
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
+  <div class="section" style="font-size:14px; color:#777;">
     Wassalamu’alaikum Warahmatullahi Wabarakatuh
   </div>
 
-  <!-- ORNAMEN BAWAH -->
   <div class="corner bottom-left"></div>
   <div class="corner bottom-right"></div>
 
