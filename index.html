@@ -13,11 +13,10 @@
             margin: 0;
             padding: 0;
             background-color: #ffffff;
-            /* Latar belakang gambar transparan lembut */
             background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
                               url('https://www.transparenttextures.com/patterns/cream-paper.png');
             text-align: center;
-            color: #000000; /* Semua tulisan Hitam */
+            color: #000000;
             scroll-behavior: smooth;
         }
 
@@ -43,6 +42,53 @@
             letter-spacing: 1.5px;
         }
 
+        /* Cover Section */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+            padding: 20px;
+            position: relative;
+            z-index: 1100;
+        }
+        .cover-title {
+            letter-spacing: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .cover-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .guest-box {
+            margin-top: 50px;
+            padding: 30px;
+            border: 1px solid #000;
+            max-width: 300px;
+            width: 85%;
+        }
+        .guest-label { font-size: 0.8rem; letter-spacing: 2px; }
+        .guest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            display: block;
+        }
+        .disclaimer {
+            font-size: 0.65rem;
+            font-style: italic;
+            margin-top: 15px;
+            color: #555;
+        }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
@@ -56,7 +102,6 @@
             color: white;
         }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 10px 0; color: #ffffff; }
-        .hero p { color: #ffffff; }
 
         /* Countdown */
         .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
@@ -64,23 +109,18 @@
         .countdown-item span { display: block; font-size: 1.2rem; font-weight: bold; }
 
         /* Section Style */
-        .section { padding: 80px 20px; position: relative; }
-        
-        /* Background Transparan per Section */
+        .section { padding: 80px 20px; }
         .floral-bg {
-            background-image: url('https://www.transparenttextures.com/patterns/white-diamond.png'); /* Pola halus */
+            background-image: url('https://www.transparenttextures.com/patterns/white-diamond.png');
             background-attachment: fixed;
         }
 
         .arabic { font-size: 1.8rem; margin-bottom: 20px; line-height: 2.5; font-weight: bold; }
         .translation { font-style: italic; font-size: 0.95rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
-
         .couple-name { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; margin: 15px 0; text-transform: uppercase; }
         
         .event-card {
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 0px; /* Desain klasik kotak */
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
             padding: 40px;
             margin: 20px auto;
             max-width: 450px;
@@ -92,93 +132,42 @@
             color: #ffffff;
             padding: 12px 35px;
             text-decoration: none;
-            border-radius: 0px;
             display: inline-block;
-            margin-top: 25px;
             font-size: 12px;
             font-weight: 600;
             letter-spacing: 2px;
-            transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
-        .btn:hover { background-color: #333333; }
         
         footer { padding: 60px; font-size: 0.7rem; letter-spacing: 3px; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
-<!-- Halaman Cover Depan -->
-    <div class="cover">
+
+    <!-- COVER DEPAN -->
+    <div id="cover" class="cover">
         <p class="cover-title">The Wedding of</p>
         <h1 class="cover-names">Pria & Wanita</h1>
         
         <div class="guest-box">
             <p class="guest-label">Kepada Bapak/Ibu/Saudara/i:</p>
             <span class="guest-name">Nama Tamu Undangan</span>
-            
             <p class="disclaimer">
                 *Mohon maaf apabila ada kesalahan dalam penulisan nama, gelar, atau jabatan.
             </p>
-            
-            <a href="#home" class="btn" style="margin-top: 30px;">BUKA UNDANGAN</a>
+            <a href="#home" class="btn" style="margin-top: 20px;">BUKA UNDANGAN</a>
         </div>
-    </div>    
-/* Cover Section */
-        .cover {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #ffffff;
-            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
-            padding: 20px;
-            z-index: 1100;
-            position: relative;
-        }
-        .cover-title {
-            letter-spacing: 5px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        .cover-names {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            margin: 0;
-            font-weight: 700;
-        }
-        .guest-box {
-            margin-top: 50px;
-            padding: 30px;
-            border: 1px solid #000;
-            max-width: 300px;
-            width: 80%;
-        }
-        .guest-label {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-        .guest-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 15px 0;
-            display: block;
-        }
-        .disclaimer {
-            font-size: 0.65rem;
-            font-style: italic;
-            margin-top: 15px;
-            line-height: 1.5;
-            color: #555;
-        }
+    </div>
+
+    <!-- NAVBAR -->
     <div class="navbar">
         <a href="#home">HOME</a>
         <a href="#couple">COUPLE</a>
         <a href="#event">ACARA</a>
     </div>
 
+    <!-- HERO -->
     <div id="home" class="hero">
         <p style="letter-spacing: 5px;">THE WEDDING OF</p>
         <h1>Nama Pria & Nama Wanita</h1>
@@ -191,6 +180,7 @@
         </div>
     </div>
 
+    <!-- COUPLE -->
     <div id="couple" class="section floral-bg">
         <div style="padding: 40px 20px;">
             <div class="arabic">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ</div>
@@ -208,6 +198,7 @@
         </div>
     </div>
 
+    <!-- EVENT -->
     <div id="event" class="section" style="background-color: #f9f9f9; background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');">
         <h2 style="font-family: 'Playfair Display'; letter-spacing: 5px;">WAKTU & TEMPAT</h2>
         <div class="event-card">
@@ -222,7 +213,7 @@
             <hr style="border: 0.5px solid #000; width: 50px; margin: 20px auto;">
             <p><strong>GEDUNG SERBAGUNA UTAMA</strong></p>
         </div>
-        <a href="https://maps.google.com" class="btn">LIHAT LOKASI</a>
+        <a href="https://maps.google.com" target="_blank" class="btn">LIHAT LOKASI</a>
     </div>
 
     <footer>
@@ -230,9 +221,10 @@
     </footer>
 
     <audio id="myAudio" loop><source src="wedding-song.mp3" type="audio/mpeg"></audio>
-    <div id="music-control" onclick="toggleMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #000; color: white; padding: 15px; border-radius: 50%; cursor: pointer; border: 2px solid white;">🎵</div>
+    <div id="music-control" onclick="toggleMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 2000; background: #000; color: white; padding: 15px; border-radius: 50%; cursor: pointer; border: 2px solid white;">🎵</div>
 
     <script>
+        // Countdown Script
         var countDownDate = new Date("August 25, 2026 08:00:00").getTime();
         var x = setInterval(function() {
             var now = new Date().getTime();
@@ -243,6 +235,7 @@
             document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
         }, 1000);
 
+        // Music Script
         var audio = document.getElementById("myAudio");
         var isPlaying = false;
         function toggleMusic() {
