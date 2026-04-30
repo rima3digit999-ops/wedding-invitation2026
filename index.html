@@ -3,160 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ri & Fu Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+<title>Undangan Pernikahan</title>
 
 <style>
-:root{
-  --gold:#c9a96a;
-  --green:#2c3e2f;
-}
-*{box-sizing:border-box}
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
   background:#000;
+  font-family:sans-serif;
   overflow-x:hidden;
 }
 
-/* ===== OPENING (cinematic) ===== */
+/* ===== ENVELOPE OPENING ===== */
 .opening{
-  position:fixed; inset:0;
-  background:#000;
-  display:flex; flex-direction:column;
-  justify-content:center; align-items:center;
-  color:#fff; z-index:9999;
-  transition:1.2s ease;
-}
-.opening h1{
-  font-family:'Playfair Display',serif;
-  font-size:42px; margin:0 0 10px;
-  letter-spacing:1px;
-}
-.opening p{opacity:.7; margin:0 0 16px}
-.open-btn{
-  padding:12px 26px; border:0;
-  border-radius:999px;
-  background:linear-gradient(45deg,var(--gold),#e6c989);
-  color:#000; font-weight:600; cursor:pointer;
-  box-shadow:0 8px 24px rgba(201,169,106,.35);
-}
-
-/* ===== WRAPPER ===== */
-.wrapper{
-  max-width:420px; margin:0 auto;
+  position:fixed;
+  inset:0;
   background:#111;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
-  overflow:hidden; border-radius:22px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
 }
 
-/* ===== HERO VIDEO / IMAGE ===== */
-.hero{
-  position:relative; height:520px;
-  overflow:hidden;
-}
-.hero video, .hero img{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-}
-.hero::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.85));
-}
-
-/* TEXT HERO */
-.hero-text{
-  position:absolute; bottom:36px; left:0; right:0;
-  text-align:center; color:#fff; z-index:2;
-  animation:fadeUp 1.6s ease both;
-}
-.hero-text .kicker{
-  letter-spacing:3px; font-size:12px; opacity:.85;
-}
-.hero-text h1{
-  font-family:'Playfair Display',serif;
-  font-size:40px; margin:6px 0 0;
-}
-
-/* ===== SECTIONS ===== */
-.section{
-  padding:32px 26px;
-  text-align:center;
-  background:linear-gradient(#fdfaf6,#f3efe9);
+.envelope{
+  width:220px;
+  height:140px;
+  background:#f3efe9;
   position:relative;
-  opacity:0; transform:translateY(40px);
-  transition:1s ease;
-}
-.section.show{opacity:1; transform:none}
-
-/* gold divider */
-.divider{
-  width:80px; height:2px;
-  background:linear-gradient(to right, transparent, var(--gold), transparent);
-  margin:16px auto;
+  cursor:pointer;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
 }
 
-/* arabic */
-.arab{color:var(--gold); font-size:18px}
-
-/* names */
-.nama{
-  font-family:'Playfair Display',serif;
-  font-size:26px; margin-top:6px;
+.flap{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#e5dfd6;
+  transform-origin:top;
+  transition:1s;
 }
 
-/* countdown */
-.countdown{margin-top:10px; font-weight:600}
-
-/* button */
-.btn{
-  display:inline-block; margin-top:10px;
-  padding:12px 22px; border-radius:12px;
-  background:linear-gradient(45deg,var(--green),#3a5a40);
-  color:#fff; text-decoration:none;
-  box-shadow:0 10px 24px rgba(0,0,0,.25);
+.envelope.open .flap{
+  transform:rotateX(180deg);
 }
 
-/* ===== GOLD GLOW ORNAMENT ===== */
-.glow{
-  position:absolute; inset:auto -30% 0 -30%;
-  height:180px;
-  background:radial-gradient(circle, rgba(201,169,106,.25), transparent 70%);
-  filter:blur(20px); pointer-events:none;
+/* ===== BLUR TRANSITION ===== */
+.wrapper{
+  filter:blur(20px);
+  transition:1.5s;
+}
+.wrapper.show{
+  filter:blur(0);
 }
 
-/* ===== FLOWER PARTICLES ===== */
+/* ===== SLIDE ===== */
+.slide{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transform:scale(1.05);
+  transition:1.5s;
+  position:relative;
+}
+.slide img{
+  width:100%;
+  max-width:420px;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+.slide.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* ===== GUEST NAME ===== */
+.guest{
+  position:absolute;
+  bottom:22%;
+  width:100%;
+  text-align:center;
+  font-size:18px;
+  font-weight:600;
+  color:#333;
+  opacity:0;
+  transition:1.5s;
+}
+.guest.show{
+  opacity:1;
+}
+
+/* ===== BUTTON ===== */
+.location-btn{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:14px 26px;
+  border-radius:14px;
+  background:#2c3e2f;
+  color:#fff;
+  text-decoration:none;
+}
+
+/* ===== FLOWER ===== */
 .flower{
-  position:fixed; top:-40px;
-  width:14px; height:14px;
-  border-radius:50%;
-  background:radial-gradient(circle, #e6c989, transparent);
+  position:fixed;
+  top:-40px;
+  width:12px;
+  height:12px;
+  background:radial-gradient(circle,#e6c989,transparent);
   opacity:.6;
   animation:fall linear infinite;
 }
 @keyframes fall{
-  to{ transform:translateY(110vh) rotate(360deg); }
-}
-
-/* ===== GUESTBOOK ===== */
-.form input, .form textarea{
-  width:100%; padding:12px;
-  border-radius:10px; border:1px solid #ddd;
-  margin:6px 0;
-}
-.form button{
-  margin-top:10px;
-  padding:12px 20px; border:0;
-  border-radius:10px;
-  background:var(--green); color:#fff;
-}
-
-/* ===== ANIM ===== */
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:none}
+  to{ transform:translateY(110vh) rotate(360deg);}
 }
 </style>
 </head>
@@ -164,143 +126,88 @@ body{
 <body>
 
 <!-- OPENING -->
-<div class="opening" id="opening">
-  <h1>Ri & Fu</h1>
-  <p>Jumat, 25 Agustus 2026</p>
-  <button class="open-btn" onclick="start()">Buka Undangan</button>
+<div class="opening" onclick="start()">
+  <div class="envelope" id="env">
+    <div class="flap"></div>
+  </div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper" id="wrapper">
 
-  <!-- HERO -->
-  <div class="hero">
-    <!-- 👉 PILIH SALAH SATU:
-         1) pakai video lokal: <video src="bg-video.mp4" ...>
-         2) pakai link CDN (contoh di bawah)
-    -->
-    <video autoplay muted loop playsinline
-      src="https://cdn.coverr.co/videos/coverr-wedding-couple-1080p.mp4">
-    </video>
+<!-- SLIDES -->
+<div class="slide"><img src="1.png"></div>
 
-    <!-- fallback kalau video tidak jalan -->
-    <img src="foto-kita.jpg" alt="Ri & Fu">
+<div class="slide">
+  <img src="2.png">
+  <div class="guest" id="guestName"></div>
+</div>
 
-    <div class="hero-text">
-      <div class="kicker">THE WEDDING OF</div>
-      <h1>Ri & Fu</h1>
-    </div>
-  </div>
+<div class="slide"><img src="3.png"></div>
 
-  <!-- AYAT -->
-  <div class="section">
-    <div class="arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
-    <div class="divider"></div>
-    <p>(QS. Ar-Rum: 21)</p>
-    <div class="glow"></div>
-  </div>
-
-  <!-- MEMPELAI -->
-  <div class="section">
-    <div class="nama">Ri</div>
-    <p>Putra dari Bapak ... & Ibu ...</p>
-
-    <div class="divider"></div>
-
-    <div class="nama">Fu</div>
-    <p>Putri dari Bapak ... & Ibu ...</p>
-  </div>
-
-  <!-- ACARA -->
-  <div class="section">
-    <div class="nama">Jumat, 25 Agustus 2026</div>
-    <p>Akad & Resepsi 10.00 WIB</p>
-    <div class="countdown" id="countdown"></div>
-  </div>
-
-  <!-- LOKASI -->
-  <div class="section">
-    <a class="btn" href="https://maps.app.goo.gl/nVPUV6W1P7WzZBEG8" target="_blank">
-      📍 Lihat Lokasi
-    </a>
-  </div>
-
-  <!-- BUKU TAMU -->
-  <div class="section">
-    <h3>Ucapan & Doa</h3>
-    <form class="form" onsubmit="sendData(event)">
-      <input type="text" id="nama" placeholder="Nama" required>
-      <textarea id="pesan" placeholder="Ucapan..." required></textarea>
-      <button type="submit">Kirim</button>
-    </form>
-    <p id="status"></p>
-  </div>
-
-  <div class="section" style="font-size:14px;color:#777">
-    Wassalamu’alaikum Warahmatullahi Wabarakatuh
-  </div>
+<div class="slide">
+  <img src="4.png">
+  <a class="location-btn"
+     href="https://maps.app.goo.gl/nVPUV6W1P7WzZBEG8"
+     target="_blank">
+     📍 Lihat Lokasi
+  </a>
+</div>
 
 </div>
 
-<!-- MUSIK -->
+<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
 <script>
-// OPENING
+// ===== GUEST =====
+const params = new URLSearchParams(location.search);
+const guest = params.get("to") || "Tamu Undangan";
+document.getElementById("guestName").innerText = guest;
+
+// ===== START =====
 function start(){
-  document.getElementById("opening").style.opacity=0;
-  setTimeout(()=>document.getElementById("opening").style.display="none",1200);
-  document.getElementById("music").play();
+  document.getElementById("env").classList.add("open");
+
+  setTimeout(()=>{
+    document.querySelector(".opening").style.display="none";
+    document.getElementById("wrapper").classList.add("show");
+    fadeMusic();
+  },800);
 }
 
-// SCROLL ANIMATION
-const sections=document.querySelectorAll('.section');
+// ===== MUSIC FADE IN =====
+function fadeMusic(){
+  let audio=document.getElementById("music");
+  audio.volume=0;
+  audio.play();
+  let i=setInterval(()=>{
+    if(audio.volume<1){
+      audio.volume+=0.05;
+    } else clearInterval(i);
+  },200);
+}
+
+// ===== SCROLL =====
+const slides=document.querySelectorAll('.slide');
 window.addEventListener('scroll',()=>{
-  sections.forEach(s=>{
+  slides.forEach(s=>{
     if(s.getBoundingClientRect().top < window.innerHeight-100){
       s.classList.add('show');
+      let g=s.querySelector('.guest');
+      if(g) g.classList.add('show');
     }
   });
 });
 
-// COUNTDOWN
-const eventDate=new Date("2026-08-25T10:00:00").getTime();
-setInterval(()=>{
-  const now=new Date().getTime();
-  const diff=eventDate-now;
-  const d=Math.floor(diff/(1000*60*60*24));
-  const h=Math.floor((diff/(1000*60*60))%24);
-  const m=Math.floor((diff/(1000*60))%60);
-  document.getElementById("countdown").innerHTML=
-    d+" hari "+h+" jam "+m+" menit";
-},1000);
-
-// FLOWERS
+// ===== FLOWER =====
 for(let i=0;i<25;i++){
   let f=document.createElement("div");
   f.className="flower";
   f.style.left=Math.random()*100+"vw";
   f.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(f);
-}
-
-// ===== GUESTBOOK (Google Sheet) =====
-// 👉 Ganti URL ini dengan Apps Script kamu
-const scriptURL = "PASTE_SCRIPT_URL_DISINI";
-
-function sendData(e){
-  e.preventDefault();
-  const data={
-    nama:document.getElementById("nama").value,
-    pesan:document.getElementById("pesan").value
-  };
-  fetch(scriptURL,{
-    method:"POST",
-    body:JSON.stringify(data)
-  })
-  .then(()=>document.getElementById("status").innerText="Terkirim ❤️")
-  .catch(()=>document.getElementById("status").innerText="Gagal kirim");
 }
 </script>
 
