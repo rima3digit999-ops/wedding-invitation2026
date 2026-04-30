@@ -7,21 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        
         html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden; /* Mencegah scroll default browser */
+            margin: 0; padding: 0; height: 100%;
+            overflow: hidden;
             font-family: 'Poppins', sans-serif;
             background-color: #fdf7f0;
         }
 
-        /* Container utama untuk efek slide scroll */
+        /* Container Scroll Snap */
         .main-container {
             height: 100vh;
             overflow-y: scroll;
-            scroll-snap-type: y mandatory; /* Efek magnet saat scroll */
+            scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
@@ -33,177 +30,130 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            scroll-snap-align: start; /* Mengunci posisi setiap bagian */
-            padding: 40px 20px;
+            scroll-snap-align: start;
+            padding: 60px 20px;
             text-align: center;
             background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png');
         }
 
-        /* Dekorasi Bingkai Atas & Bawah (Mirip Gambar) */
+        /* Dekorasi Bingkai Bunga (Mirip Screenshot_20260430-121446_Chrome.jpg) */
         .decor-top, .decor-bottom {
             position: absolute;
-            left: 0;
-            width: 100%;
-            height: 180px; /* Ukuran hiasan */
+            left: 0; width: 100%; height: 200px;
             background-size: contain;
             background-repeat: no-repeat;
             z-index: 1;
-            opacity: 0.9;
+            opacity: 0.8;
         }
+        .decor-top { top: 0; background-image: url('https://i.ibb.co/L5fX0y0/top-floral.png'); background-position: top center; }
+        .decor-bottom { bottom: 65px; background-image: url('https://i.ibb.co/L5fX0y0/top-floral.png'); background-position: bottom center; transform: rotate(180deg); }
+
+        .content { position: relative; z-index: 2; width: 100%; max-width: 600px; }
+
+        /* Gaya Teks */
+        h1, h2, .couple-name { font-family: 'Playfair Display', serif; color: #8d6e63; }
+        .arabic { font-size: 1.6rem; margin-bottom: 15px; font-weight: bold; line-height: 2; }
         
-        .decor-top {
-            top: 0;
-            background-image: url('https://i.ibb.co/L5fX0y0/top-floral.png'); /* Ganti dengan link hiasan bunga Anda */
-            background-position: top center;
-        }
+        /* Countdown Style */
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .countdown-item { background: #8d6e63; color: white; padding: 10px; border-radius: 8px; min-width: 60px; }
+        .countdown-item span { display: block; font-size: 1.2rem; font-weight: bold; }
 
-        .decor-bottom {
-            bottom: 60px; /* Jarak untuk navbar bawah */
-            background-image: url('https://i.ibb.co/L5fX0y0/top-floral.png'); 
-            background-position: bottom center;
-            transform: rotate(180deg); /* Balik hiasan untuk bagian bawah */
-        }
-
-        /* Konten di dalam Section */
-        .content {
-            position: relative;
-            z-index: 2;
-            max-width: 500px;
-        }
-
-        h1, h2 { font-family: 'Playfair Display', serif; color: #8d6e63; }
-        .greeting { color: #8d6e63; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; }
-
-        /* Navbar Bawah (Bottom Navigation) */
+        /* Navbar Bawah */
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 65px;
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
+            position: fixed; bottom: 0; width: 100%; height: 65px;
+            background: white; display: flex; justify-content: space-around;
+            align-items: center; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); z-index: 1000;
         }
+        .nav-item { text-decoration: none; color: #555; font-size: 0.7rem; text-align: center; }
 
-        .nav-item {
-            text-decoration: none;
-            color: #555;
-            font-size: 0.7rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .nav-item span { font-size: 1.2rem; margin-bottom: 2px; }
-
-        /* Tombol Buka di Cover */
-        .btn-open {
-            background: #8d6e63;
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 20px;
-            display: inline-block;
-        }
-
-        /* Floating Music Button */
-        .music-btn {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            cursor: pointer;
-        }
+        .btn { background: #8d6e63; color: white; padding: 10px 25px; text-decoration: none; display: inline-block; margin-top: 15px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div class="main-container">
-        <!-- SECTION 1: COVER -->
+        <!-- 1. COVER -->
         <div id="home" class="section">
             <div class="decor-top"></div>
             <div class="content">
                 <p style="letter-spacing: 5px;">THE WEDDING OF</p>
-                <h1 style="font-size: 2.5rem;">Pria & Wanita</h1>
-                <div style="border: 1px solid #8d6e63; padding: 20px; margin-top: 20px;">
-                    <p>Kepada Yth:</p>
+                <h1 style="font-size: 2.5rem; margin: 10px 0;">Pria & Wanita</h1>
+                <div style="border: 1px solid #8d6e63; padding: 20px; margin: 20px auto; max-width: 300px;">
+                    <p style="font-size: 0.8rem; margin: 0;">Kepada Yth:</p>
                     <h3 style="margin: 10px 0;">Nama Tamu Undangan</h3>
-                    <p style="font-size: 0.7rem; font-style: italic;">Mohon maaf apabila ada salah penulisan nama/gelar</p>
+                    <p style="font-size: 0.6rem; font-style: italic;">*Mohon maaf apabila ada salah penulisan nama/gelar</p>
+                </div>
+                <p>25 AGUSTUS 2026</p>
+                <div class="countdown-container">
+                    <div class="countdown-item"><span id="days">00</span><small>HARI</small></div>
+                    <div class="countdown-item"><span id="hours">00</span><small>JAM</small></div>
+                    <div class="countdown-item"><span id="minutes">00</span><small>MENIT</small></div>
+                    <div class="countdown-item"><span id="seconds">00</span><small>DETIK</small></div>
                 </div>
             </div>
             <div class="decor-bottom"></div>
         </div>
 
-        <!-- SECTION 2: PEMBUKA (Assalamu'alaikum) -->
+        <!-- 2. SURAH AR-RUM (Intro) -->
         <div id="intro" class="section">
             <div class="decor-top"></div>
             <div class="content">
-                <p class="greeting">Assalamu'alaikum Wr. Wb.</p>
-                <p>Dengan memohon rahmat dan ridho Allah SWT yang telah menciptakan Makhluk-Nya secara berpasang-pasangan.</p>
-                <p>Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+                <div class="arabic">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ</div>
+                <p style="font-size: 0.9rem; font-style: italic; line-height: 1.6;">"Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri..." (QS. Ar-Rum: 21)</p>
             </div>
             <div class="decor-bottom"></div>
         </div>
 
-        <!-- SECTION 3: MEMPELAI -->
+        <!-- 3. MEMPELAI (Couple) -->
         <div id="couple" class="section">
             <div class="decor-top"></div>
             <div class="content">
-                <h2>Mempelai</h2>
-                <p><strong>Nama Mempelai Pria</strong><br>Putra dari Bpk. Ayah & Ibu Ibu</p>
-                <p style="font-size: 1.5rem;">&</p>
-                <p><strong>Nama Mempelai Wanita</strong><br>Putri dari Bpk. Ayah & Ibu Ibu</p>
+                <h2 class="couple-name">Mempelai Pria</h2>
+                <p>Putra dari Bpk. Nama Ayah & Ibu Nama Ibu</p>
+                <h2 style="margin: 10px 0;">&</h2>
+                <h2 class="couple-name">Mempelai Wanita</h2>
+                <p>Putri dari Bpk. Nama Ayah & Ibu Nama Ibu</p>
             </div>
             <div class="decor-bottom"></div>
         </div>
 
-        <!-- SECTION 4: ACARA -->
+        <!-- 4. ACARA (Event) -->
         <div id="event" class="section">
             <div class="decor-top"></div>
             <div class="content">
                 <h2>Waktu & Tempat</h2>
-                <p><strong>AKAD NIKAH</strong><br>08.00 - 10.00 WIB</p>
-                <hr style="width: 50px; border: 0.5px solid #8d6e63;">
-                <p><strong>RESEPSI</strong><br>11.00 - Selesai</p>
-                <p>Lokasi: Gedung Serbaguna Kota</p>
-                <a href="#" class="btn-open">LIHAT LOKASI</a>
+                <div style="margin-bottom: 20px;">
+                    <p><strong>AKAD NIKAH</strong><br>08.00 - 10.00 WIB<br>Masjid Raya Kota</p>
+                </div>
+                <div>
+                    <p><strong>RESEPSI</strong><br>11.00 - Selesai<br>Gedung Serbaguna</p>
+                </div>
+                <a href="#" class="btn">LIHAT LOKASI</a>
             </div>
             <div class="decor-bottom"></div>
         </div>
     </div>
 
-    <!-- NAVBAR BAWAH -->
+    <!-- Navigasi Bawah -->
     <nav class="bottom-nav">
-        <a href="#home" class="nav-item"><span>🏠</span>Home</a>
-        <a href="#couple" class="nav-item"><span>👥</span>Mempelai</a>
-        <a href="#event" class="nav-item"><span>📅</span>Acara</a>
-        <a href="#intro" class="nav-item"><span>💬</span>Ucapan</a>
+        <a href="#home" class="nav-item">🏠<br>Home</a>
+        <a href="#couple" class="nav-item">👥<br>Mempelai</a>
+        <a href="#event" class="nav-item">📅<br>Acara</a>
+        <a href="#intro" class="nav-item">💬<br>Ucapan</a>
     </nav>
 
-    <div class="music-btn" onclick="toggleMusic()">🎵</div>
-    <audio id="myAudio" loop><source src="wedding-song.mp3" type="audio/mpeg"></audio>
-
     <script>
-        // Script sederhana untuk musik
-        var audio = document.getElementById("myAudio");
-        var playing = false;
-        function toggleMusic() {
-            if (playing) { audio.pause(); } else { audio.play(); }
-            playing = !playing;
-        }
+        // Countdown
+        var countDownDate = new Date("August 25, 2026 08:00:00").getTime();
+        setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
     </script>
 </body>
 </html>
