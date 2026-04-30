@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Undangan Pernikahan</title>
+
+<!-- PREVIEW WHATSAPP -->
+<meta property="og:title" content="Undangan Pernikahan Ri & Fu">
+<meta property="og:description" content="Jumat, 25 Agustus 2026">
+<meta property="og:image" content="https://rima3digit999-ops.github.io/wedding-invitation2026/1.png">
+<meta property="og:type" content="website">
 
 <style>
 body{
@@ -13,31 +20,37 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== OPENING LUXURY ===== */
+/* ===== OPENING ULTRA ===== */
 .opening{
   position:fixed;
   inset:0;
-  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
+  background:#000;
   z-index:999;
   overflow:hidden;
 }
 
+/* vignette */
 .overlay{
   position:absolute;
   inset:0;
-  background:radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9));
+  background:radial-gradient(circle,transparent 40%,rgba(0,0,0,0.9));
 }
 
+/* glass box */
 .opening-box{
+  backdrop-filter:blur(10px);
+  padding:40px;
+  border-radius:20px;
   text-align:center;
   color:#fff;
-  z-index:2;
   animation:fadeZoom 2s ease;
+  z-index:2;
 }
 
+/* text */
 .kepada{
   letter-spacing:4px;
   font-size:13px;
@@ -54,8 +67,10 @@ body{
   color:transparent;
   -webkit-background-clip:text;
   animation:shine 3s linear infinite;
+  text-shadow:0 0 25px rgba(201,169,106,.3);
 }
 
+/* BUTTON */
 .open-btn{
   padding:14px 34px;
   border-radius:999px;
@@ -64,6 +79,7 @@ body{
   color:#000;
   font-weight:600;
   cursor:pointer;
+  box-shadow:0 10px 30px rgba(201,169,106,.4);
 }
 
 /* ANIMATION */
@@ -114,9 +130,10 @@ body{
   bottom:22%;
   width:100%;
   text-align:center;
-  font-size:18px;
+  font-size:20px;
   font-weight:600;
-  color:#333;
+  color:#2c3e2f;
+  letter-spacing:1px;
   opacity:0;
   transition:1.5s;
 }
@@ -137,12 +154,12 @@ body{
   text-decoration:none;
 }
 
-/* ===== FLOWER ===== */
+/* ===== PARTICLE ===== */
 .flower{
   position:fixed;
   top:-40px;
-  width:10px;
-  height:10px;
+  width:8px;
+  height:8px;
   background:radial-gradient(circle,#e6c989,transparent);
   opacity:.5;
   animation:fall linear infinite;
@@ -197,7 +214,7 @@ body{
 </div>
 
 <audio id="music" loop>
- <source src="wedding-song.mp3">
+  <source src="wedding-song.mp3">
 </audio>
 
 <script>
@@ -213,13 +230,15 @@ function start(){
   const opening = document.getElementById("opening");
 
   opening.style.opacity = "0";
+  opening.style.transform = "scale(1.05)";
+  opening.style.transition = "1.2s ease";
 
   setTimeout(()=>{
     opening.style.display="none";
     document.getElementById("wrapper").classList.add("show");
     fadeMusic();
     showSlides();
-  },1000);
+  },1200);
 }
 
 // ===== MUSIC =====
@@ -237,9 +256,14 @@ function fadeMusic(){
   },200);
 }
 
-// ===== SHOW FIRST =====
+// ===== FIRST SLIDE =====
 function showSlides(){
   document.querySelectorAll('.slide')[0].classList.add('show');
+}
+
+// ===== AUTO SHOW (ANTI BLANK) =====
+window.onload = function(){
+  showSlides();
 }
 
 // ===== SCROLL =====
@@ -253,7 +277,7 @@ window.addEventListener('scroll',()=>{
   });
 });
 
-// ===== FLOWER =====
+// ===== PARTICLE =====
 for(let i=0;i<20;i++){
   let f=document.createElement("div");
   f.className="flower";
