@@ -3,152 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Ri & Fu Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  background: #eae7e1;
-  font-family: 'Poppins', sans-serif;
+:root{
+  --gold:#c9a96a;
+  --green:#2c3e2f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  overflow-x:hidden;
 }
 
-/* CONTAINER */
-.container {
-  max-width: 420px;
-  margin: auto;
-  background: linear-gradient(#fdfaf6, #f3efe9);
-  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
-  border-radius: 25px;
-  overflow: hidden;
-  position: relative;
+/* ===== OPENING (cinematic) ===== */
+.opening{
+  position:fixed; inset:0;
+  background:#000;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  color:#fff; z-index:9999;
+  transition:1.2s ease;
+}
+.opening h1{
+  font-family:'Playfair Display',serif;
+  font-size:42px; margin:0 0 10px;
+  letter-spacing:1px;
+}
+.opening p{opacity:.7; margin:0 0 16px}
+.open-btn{
+  padding:12px 26px; border:0;
+  border-radius:999px;
+  background:linear-gradient(45deg,var(--gold),#e6c989);
+  color:#000; font-weight:600; cursor:pointer;
+  box-shadow:0 8px 24px rgba(201,169,106,.35);
 }
 
-/* ORNAMEN BACKGROUND */
-.container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(201,169,106,0.15), transparent);
-  pointer-events: none;
+/* ===== WRAPPER ===== */
+.wrapper{
+  max-width:420px; margin:0 auto;
+  background:#111;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  overflow:hidden; border-radius:22px;
 }
 
-/* HERO */
-.hero {
-  height: 460px;
-  background: url('foto-kita.jpg') center/cover;
-  position: relative;
+/* ===== HERO VIDEO / IMAGE ===== */
+.hero{
+  position:relative; height:520px;
+  overflow:hidden;
 }
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.75));
+.hero video, .hero img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.85));
 }
 
 /* TEXT HERO */
-.hero-text {
-  position: absolute;
-  bottom: 40px;
-  width: 100%;
-  text-align: center;
-  color: white;
-  z-index: 2;
-  animation: fadeUp 2s ease;
+.hero-text{
+  position:absolute; bottom:36px; left:0; right:0;
+  text-align:center; color:#fff; z-index:2;
+  animation:fadeUp 1.6s ease both;
+}
+.hero-text .kicker{
+  letter-spacing:3px; font-size:12px; opacity:.85;
+}
+.hero-text h1{
+  font-family:'Playfair Display',serif;
+  font-size:40px; margin:6px 0 0;
 }
 
-.hero-text h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  margin: 0;
+/* ===== SECTIONS ===== */
+.section{
+  padding:32px 26px;
+  text-align:center;
+  background:linear-gradient(#fdfaf6,#f3efe9);
+  position:relative;
+  opacity:0; transform:translateY(40px);
+  transition:1s ease;
+}
+.section.show{opacity:1; transform:none}
+
+/* gold divider */
+.divider{
+  width:80px; height:2px;
+  background:linear-gradient(to right, transparent, var(--gold), transparent);
+  margin:16px auto;
 }
 
-.hero-text p {
-  letter-spacing: 3px;
-  font-size: 13px;
+/* arabic */
+.arab{color:var(--gold); font-size:18px}
+
+/* names */
+.nama{
+  font-family:'Playfair Display',serif;
+  font-size:26px; margin-top:6px;
 }
 
-/* SECTION */
-.section {
-  padding: 35px 25px;
-  text-align: center;
-  animation: fadeUp 1.5s ease;
+/* countdown */
+.countdown{margin-top:10px; font-weight:600}
+
+/* button */
+.btn{
+  display:inline-block; margin-top:10px;
+  padding:12px 22px; border-radius:12px;
+  background:linear-gradient(45deg,var(--green),#3a5a40);
+  color:#fff; text-decoration:none;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* DIVIDER GOLD */
-.divider {
-  width: 70px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #c9a96a, transparent);
-  margin: 15px auto;
+/* ===== GOLD GLOW ORNAMENT ===== */
+.glow{
+  position:absolute; inset:auto -30% 0 -30%;
+  height:180px;
+  background:radial-gradient(circle, rgba(201,169,106,.25), transparent 70%);
+  filter:blur(20px); pointer-events:none;
 }
 
-/* ARABIC */
-.arab {
-  font-size: 18px;
-  color: #c9a96a;
+/* ===== FLOWER PARTICLES ===== */
+.flower{
+  position:fixed; top:-40px;
+  width:14px; height:14px;
+  border-radius:50%;
+  background:radial-gradient(circle, #e6c989, transparent);
+  opacity:.6;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh) rotate(360deg); }
 }
 
-/* NAMA */
-.nama {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
+/* ===== GUESTBOOK ===== */
+.form input, .form textarea{
+  width:100%; padding:12px;
+  border-radius:10px; border:1px solid #ddd;
+  margin:6px 0;
+}
+.form button{
+  margin-top:10px;
+  padding:12px 20px; border:0;
+  border-radius:10px;
+  background:var(--green); color:#fff;
 }
 
-/* COUNTDOWN */
-.countdown {
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-/* BUTTON */
-.btn {
-  display: inline-block;
-  padding: 12px 20px;
-  background: linear-gradient(45deg, #2c3e2f, #3a5a40);
-  color: white;
-  border-radius: 12px;
-  text-decoration: none;
-  margin-top: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* CORNER ORNAMEN */
-.corner {
-  position: absolute;
-  width: 90px;
-  height: 90px;
-  border: 2px solid #c9a96a;
-  opacity: 0.6;
-}
-
-.top-left { top: 15px; left: 15px; border-right:none; border-bottom:none;}
-.top-right { top: 15px; right: 15px; border-left:none; border-bottom:none;}
-.bottom-left { bottom: 15px; left: 15px; border-right:none; border-top:none;}
-.bottom-right { bottom: 15px; right: 15px; border-left:none; border-top:none;}
-
-/* ANIMASI */
-@keyframes fadeUp {
-  from {opacity:0; transform: translateY(30px);}
-  to {opacity:1; transform: translateY(0);}
+/* ===== ANIM ===== */
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px)}
+  to{opacity:1; transform:none}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- OPENING -->
+<div class="opening" id="opening">
+  <h1>Ri & Fu</h1>
+  <p>Jumat, 25 Agustus 2026</p>
+  <button class="open-btn" onclick="start()">Buka Undangan</button>
+</div>
 
-  <div class="corner top-left"></div>
-  <div class="corner top-right"></div>
+<div class="wrapper">
 
   <!-- HERO -->
   <div class="hero">
+    <!-- 👉 PILIH SALAH SATU:
+         1) pakai video lokal: <video src="bg-video.mp4" ...>
+         2) pakai link CDN (contoh di bawah)
+    -->
+    <video autoplay muted loop playsinline
+      src="https://cdn.coverr.co/videos/coverr-wedding-couple-1080p.mp4">
+    </video>
+
+    <!-- fallback kalau video tidak jalan -->
+    <img src="foto-kita.jpg" alt="Ri & Fu">
+
     <div class="hero-text">
-      <p>THE WEDDING OF</p>
+      <div class="kicker">THE WEDDING OF</div>
       <h1>Ri & Fu</h1>
     </div>
   </div>
@@ -157,10 +195,8 @@ body {
   <div class="section">
     <div class="arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
     <div class="divider"></div>
-    <p>
-      Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan hidup...
-      <br><b>(QS. Ar-Rum: 21)</b>
-    </p>
+    <p>(QS. Ar-Rum: 21)</p>
+    <div class="glow"></div>
   </div>
 
   <!-- MEMPELAI -->
@@ -188,29 +224,84 @@ body {
     </a>
   </div>
 
-  <div class="section" style="font-size:14px; color:#777;">
+  <!-- BUKU TAMU -->
+  <div class="section">
+    <h3>Ucapan & Doa</h3>
+    <form class="form" onsubmit="sendData(event)">
+      <input type="text" id="nama" placeholder="Nama" required>
+      <textarea id="pesan" placeholder="Ucapan..." required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+    <p id="status"></p>
+  </div>
+
+  <div class="section" style="font-size:14px;color:#777">
     Wassalamu’alaikum Warahmatullahi Wabarakatuh
   </div>
 
-  <div class="corner bottom-left"></div>
-  <div class="corner bottom-right"></div>
-
 </div>
 
+<!-- MUSIK -->
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3">
+</audio>
+
 <script>
-const eventDate = new Date("2026-08-25T10:00:00").getTime();
+// OPENING
+function start(){
+  document.getElementById("opening").style.opacity=0;
+  setTimeout(()=>document.getElementById("opening").style.display="none",1200);
+  document.getElementById("music").play();
+}
 
-setInterval(() => {
-  const now = new Date().getTime();
-  const diff = eventDate - now;
+// SCROLL ANIMATION
+const sections=document.querySelectorAll('.section');
+window.addEventListener('scroll',()=>{
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top < window.innerHeight-100){
+      s.classList.add('show');
+    }
+  });
+});
 
-  const d = Math.floor(diff / (1000*60*60*24));
-  const h = Math.floor((diff / (1000*60*60)) % 24);
-  const m = Math.floor((diff / (1000*60)) % 60);
-
-  document.getElementById("countdown").innerHTML =
+// COUNTDOWN
+const eventDate=new Date("2026-08-25T10:00:00").getTime();
+setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=eventDate-now;
+  const d=Math.floor(diff/(1000*60*60*24));
+  const h=Math.floor((diff/(1000*60*60))%24);
+  const m=Math.floor((diff/(1000*60))%60);
+  document.getElementById("countdown").innerHTML=
     d+" hari "+h+" jam "+m+" menit";
-}, 1000);
+},1000);
+
+// FLOWERS
+for(let i=0;i<25;i++){
+  let f=document.createElement("div");
+  f.className="flower";
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(f);
+}
+
+// ===== GUESTBOOK (Google Sheet) =====
+// 👉 Ganti URL ini dengan Apps Script kamu
+const scriptURL = "PASTE_SCRIPT_URL_DISINI";
+
+function sendData(e){
+  e.preventDefault();
+  const data={
+    nama:document.getElementById("nama").value,
+    pesan:document.getElementById("pesan").value
+  };
+  fetch(scriptURL,{
+    method:"POST",
+    body:JSON.stringify(data)
+  })
+  .then(()=>document.getElementById("status").innerText="Terkirim ❤️")
+  .catch(()=>document.getElementById("status").innerText="Gagal kirim");
+}
 </script>
 
 </body>
