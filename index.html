@@ -13,37 +13,66 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== OPENING ===== */
+/* ===== OPENING LUXURY ===== */
 .opening{
   position:fixed;
   inset:0;
-  background:#111;
+  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
   z-index:999;
+  overflow:hidden;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9));
+}
+
+.opening-box{
+  text-align:center;
+  color:#fff;
+  z-index:2;
+  animation:fadeZoom 2s ease;
+}
+
+.kepada{
+  letter-spacing:4px;
+  font-size:13px;
+  opacity:.7;
+}
+
+/* GOLD TEXT */
+.gold-text{
+  font-size:34px;
+  margin:10px 0 25px;
+  font-weight:600;
+  background:linear-gradient(90deg,#c9a96a,#fff3c4,#c9a96a);
+  background-size:200% auto;
+  color:transparent;
+  -webkit-background-clip:text;
+  animation:shine 3s linear infinite;
+}
+
+.open-btn{
+  padding:14px 34px;
+  border-radius:999px;
+  border:0;
+  background:linear-gradient(45deg,#c9a96a,#e6c989);
+  color:#000;
+  font-weight:600;
   cursor:pointer;
 }
 
-.envelope{
-  width:220px;
-  height:140px;
-  background:#f3efe9;
-  position:relative;
-  box-shadow:0 10px 40px rgba(0,0,0,.4);
+/* ANIMATION */
+@keyframes shine{
+  to{ background-position:200% center; }
 }
-
-.flap{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:#e5dfd6;
-  transform-origin:top;
-  transition:1s;
-}
-
-.envelope.open .flap{
-  transform:rotateX(180deg);
+@keyframes fadeZoom{
+  from{opacity:0; transform:scale(1.1);}
+  to{opacity:1; transform:scale(1);}
 }
 
 /* ===== WRAPPER ===== */
@@ -55,7 +84,7 @@ body{
   filter:blur(0);
 }
 
-/* ===== SLIDES ===== */
+/* ===== SLIDE ===== */
 .slide{
   min-height:110vh;
   display:flex;
@@ -91,12 +120,11 @@ body{
   opacity:0;
   transition:1.5s;
 }
-
 .guest.show{
   opacity:1;
 }
 
-/* ===== BUTTON ===== */
+/* ===== BUTTON LOKASI ===== */
 .location-btn{
   position:absolute;
   bottom:40px;
@@ -107,22 +135,21 @@ body{
   background:#2c3e2f;
   color:#fff;
   text-decoration:none;
-  font-weight:600;
 }
 
 /* ===== FLOWER ===== */
 .flower{
   position:fixed;
   top:-40px;
-  width:12px;
-  height:12px;
+  width:10px;
+  height:10px;
   background:radial-gradient(circle,#e6c989,transparent);
-  opacity:.6;
+  opacity:.5;
   animation:fall linear infinite;
 }
 
 @keyframes fall{
-  to{ transform:translateY(110vh) rotate(360deg);}
+  to{ transform:translateY(110vh) rotate(360deg); }
 }
 </style>
 </head>
@@ -130,23 +157,33 @@ body{
 <body>
 
 <!-- OPENING -->
-<div class="opening" onclick="start()">
-  <div class="envelope" id="env">
-    <div class="flap"></div>
+<div class="opening" id="opening">
+  <div class="overlay"></div>
+
+  <div class="opening-box">
+    <p class="kepada">Kepada Yth.</p>
+    <h1 id="guestDisplay" class="gold-text"></h1>
+
+    <button class="open-btn" onclick="start()">
+      Buka Undangan
+    </button>
   </div>
 </div>
 
 <div class="wrapper" id="wrapper">
 
-<!-- SLIDES -->
-<div class="slide"><img src="1.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+1'"></div>
+<div class="slide">
+  <img src="1.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+1'">
+</div>
 
 <div class="slide">
   <img src="2.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+2'">
   <div class="guest" id="guestName"></div>
 </div>
 
-<div class="slide"><img src="3.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+3'"></div>
+<div class="slide">
+  <img src="3.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+3'">
+</div>
 
 <div class="slide">
   <img src="4.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+4'">
@@ -159,74 +196,71 @@ body{
 
 </div>
 
-<!-- MUSIC -->
 <audio id="music" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
 <script>
-// ===== AMBIL NAMA TAMU =====
+// ===== NAMA TAMU =====
 const params = new URLSearchParams(window.location.search);
 const guest = params.get("to") || "Tamu Undangan";
+
+document.getElementById("guestDisplay").innerText = guest;
 document.getElementById("guestName").innerText = guest;
 
-// ===== START OPENING =====
+// ===== START =====
 function start(){
-  document.getElementById("env").classList.add("open");
+  const opening = document.getElementById("opening");
+
+  opening.style.opacity = "0";
 
   setTimeout(()=>{
-    document.querySelector(".opening").style.display="none";
+    opening.style.display="none";
     document.getElementById("wrapper").classList.add("show");
     fadeMusic();
     showSlides();
-  },800);
+  },1000);
 }
 
-// ===== MUSIC FADE =====
+// ===== MUSIC =====
 function fadeMusic(){
-  const audio = document.getElementById("music");
-  audio.volume = 0;
+  const audio=document.getElementById("music");
+  audio.volume=0;
   audio.play().catch(()=>{});
-  let vol = 0;
-  const fade = setInterval(()=>{
-    if(vol < 1){
-      vol += 0.05;
-      audio.volume = vol;
+  let vol=0;
+
+  const fade=setInterval(()=>{
+    if(vol<1){
+      vol+=0.05;
+      audio.volume=vol;
     } else clearInterval(fade);
   },200);
 }
 
-// ===== TAMPILKAN SLIDE AWAL =====
+// ===== SHOW FIRST =====
 function showSlides(){
   document.querySelectorAll('.slide')[0].classList.add('show');
 }
 
-// ===== SCROLL ANIMATION =====
-window.addEventListener('scroll', ()=>{
-  document.querySelectorAll('.slide').forEach(slide=>{
-    if(slide.getBoundingClientRect().top < window.innerHeight - 100){
-      slide.classList.add('show');
-      const g = slide.querySelector('.guest');
+// ===== SCROLL =====
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('.slide').forEach(s=>{
+    if(s.getBoundingClientRect().top < window.innerHeight-100){
+      s.classList.add('show');
+      let g=s.querySelector('.guest');
       if(g) g.classList.add('show');
     }
   });
 });
 
-// ===== FLOWER EFFECT =====
-for(let i=0;i<25;i++){
-  const f=document.createElement("div");
+// ===== FLOWER =====
+for(let i=0;i<20;i++){
+  let f=document.createElement("div");
   f.className="flower";
   f.style.left=Math.random()*100+"vw";
-  f.style.animationDuration=(5+Math.random()*5)+"s";
+  f.style.animationDuration=(6+Math.random()*5)+"s";
   document.body.appendChild(f);
 }
-
-// ===== AUTO BYPASS kalau opening gagal =====
-setTimeout(()=>{
-  document.querySelector(".opening").style.display="none";
-  document.getElementById("wrapper").classList.add("show");
-  showSlides();
-},4000);
 </script>
 
 </body>
