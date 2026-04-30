@@ -106,7 +106,73 @@
     </style>
 </head>
 <body>
-
+<!-- Halaman Cover Depan -->
+    <div class="cover">
+        <p class="cover-title">The Wedding of</p>
+        <h1 class="cover-names">Pria & Wanita</h1>
+        
+        <div class="guest-box">
+            <p class="guest-label">Kepada Bapak/Ibu/Saudara/i:</p>
+            <span class="guest-name">Nama Tamu Undangan</span>
+            
+            <p class="disclaimer">
+                *Mohon maaf apabila ada kesalahan dalam penulisan nama, gelar, atau jabatan.
+            </p>
+            
+            <a href="#home" class="btn" style="margin-top: 30px;">BUKA UNDANGAN</a>
+        </div>
+    </div>    
+/* Cover Section */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+            padding: 20px;
+            z-index: 1100;
+            position: relative;
+        }
+        .cover-title {
+            letter-spacing: 5px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .cover-names {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 700;
+        }
+        .guest-box {
+            margin-top: 50px;
+            padding: 30px;
+            border: 1px solid #000;
+            max-width: 300px;
+            width: 80%;
+        }
+        .guest-label {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .guest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 15px 0;
+            display: block;
+        }
+        .disclaimer {
+            font-size: 0.65rem;
+            font-style: italic;
+            margin-top: 15px;
+            line-height: 1.5;
+            color: #555;
+        }
     <div class="navbar">
         <a href="#home">HOME</a>
         <a href="#couple">COUPLE</a>
