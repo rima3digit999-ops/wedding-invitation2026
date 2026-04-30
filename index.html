@@ -4,38 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan - Nama Kalian</title>
+    <!-- Import Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         /* Base Style */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #fdfcfb;
             text-align: center;
-            color: #333;
+            color: #4a5d58; /* Dark Sage */
             scroll-behavior: smooth;
         }
 
         /* Navbar */
         .navbar {
-            overflow: hidden;
             background-color: rgba(255, 255, 255, 0.95);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .navbar a {
             float: left;
             display: block;
-            color: #84a59d;
+            color: #bfa37e; /* Gold */
             text-align: center;
             padding: 15px 0;
             text-decoration: none;
-            font-size: 12px;
-            font-weight: bold;
-            width: 25%;
+            font-size: 11px;
+            font-weight: 600;
+            width: 33.33%; /* 3 Menu Saja */
+            letter-spacing: 1px;
         }
 
         /* Hero Section */
@@ -48,141 +50,108 @@
             flex-direction: column;
             justify-content: center;
             color: white;
-            padding: 0 20px;
         }
-        h1 { font-size: 2.5rem; margin: 10px 0; font-family: 'Georgia', serif; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin: 10px 0; color: #fdfcfb; }
 
-        /* Countdown Style */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .countdown-item {
-            background: rgba(255, 255, 255, 0.9);
-            color: #84a59d;
-            padding: 10px;
-            border-radius: 8px;
-            min-width: 60px;
-        }
+        /* Countdown */
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+        .countdown-item { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(5px); color: white; padding: 10px; border-radius: 8px; min-width: 60px; border: 1px solid rgba(255,255,255,0.3); }
         .countdown-item span { display: block; font-size: 1.2rem; font-weight: bold; }
-        .countdown-item small { font-size: 0.6rem; color: #666; }
+        .countdown-item small { font-size: 0.6rem; text-transform: uppercase; }
 
         /* Section Style */
-        .section { padding: 80px 20px; }
-        .couple-name { font-size: 1.8rem; color: #84a59d; font-weight: bold; margin-top: 20px; }
+        .section { padding: 100px 20px; }
+        .quote-section { background-color: #f4f7f6; font-family: 'Playfair Display', serif; padding: 120px 30px; }
+        .arabic { font-size: 1.8rem; margin-bottom: 20px; color: #84a59d; line-height: 2.5; }
+        .translation { font-style: italic; font-size: 1rem; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+        .couple-name { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #bfa37e; font-weight: 700; margin: 15px 0; }
         .event-card {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(132, 165, 157, 0.1);
+            padding: 30px;
             margin: 20px auto;
             max-width: 400px;
-            border: 1px solid #eee;
+            border-top: 5px solid #bfa37e;
         }
         .btn {
             background-color: #84a59d;
             color: white;
-            padding: 12px 25px;
+            padding: 14px 30px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 50px;
             display: inline-block;
-            margin-top: 15px;
-            font-size: 14px;
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
         }
-        footer { padding: 40px; font-size: 0.8rem; color: #aaa; background: #f9f9f9; }
+        .btn:hover { background-color: #bfa37e; }
+        footer { padding: 40px; font-size: 0.7rem; color: #999; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <!-- Navigasi -->
     <div class="navbar">
-        <a href="#home">HOME</a>
-        <a href="#couple">COUPLE</a>
-        <a href="#event">EVENT</a>
-        <a href="#rsvp">RSVP</a>
+        <a href="#home">BERANDA</a>
+        <a href="#couple">MEMPELAI</a>
+        <a href="#event">ACARA</a>
     </div>
 
-    <!-- Header / Hero -->
     <div id="home" class="hero">
-        <p>THE WEDDING OF</p>
+        <p style="letter-spacing: 5px;">THE WEDDING OF</p>
         <h1>Nama Pria & Nama Wanita</h1>
         <p>25 Agustus 2026</p>
-
-        <!-- Countdown -->
         <div class="countdown-container">
-            <div class="countdown-item">
-                <span id="days">00</span>
-                <small>Hari</small>
-            </div>
-            <div class="countdown-item">
-                <span id="hours">00</span>
-                <small>Jam</small>
-            </div>
-            <div class="countdown-item">
-                <span id="minutes">00</span>
-                <small>Menit</small>
-            </div>
-            <div class="countdown-item">
-                <span id="seconds">00</span>
-                <small>Detik</small>
-            </div>
+            <div class="countdown-item"><span id="days">00</span><small>Hari</small></div>
+            <div class="countdown-item"><span id="hours">00</span><small>Jam</small></div>
+            <div class="countdown-item"><span id="minutes">00</span><small>Menit</small></div>
+            <div class="countdown-item"><span id="seconds">00</span><small>Detik</small></div>
         </div>
     </div>
 
-    <!-- Mempelai -->
     <div id="couple" class="section">
-        <p>Assalamu’alaikum Wr. Wb. Maha suci Allah yang telah menciptakan mahluk-Nya berpasang-pasangan.</p>
-        
-        <div class="couple-name">Mempelai Pria</div>
-        <p>Putra dari Bpk. Nama Ayah & Ibu. Nama Ibu</p>
-        
-        <div style="font-size: 2rem; margin: 10px; color: #84a59d;">&</div>
-        
-        <div class="couple-name">Mempelai Wanita</div>
-        <p>Putri dari Bpk. Nama Ayah & Ibu. Nama Ibu</p>
+        <div class="quote-section">
+            <div class="arabic">وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ</div>
+            <div class="translation">
+                "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang." <br> <strong>(QS. Ar-Rum: 21)</strong>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px;">
+            <div class="couple-name">Mempelai Pria</div>
+            <p>Putra dari Bpk. Nama Ayah & Ibu. Nama Ibu</p>
+            <div style="font-size: 2.5rem; color: #bfa37e; font-family: 'Playfair Display';">&</div>
+            <div class="couple-name">Mempelai Wanita</div>
+            <p>Putri dari Bpk. Nama Ayah & Ibu. Nama Ibu</p>
+        </div>
     </div>
 
-    <!-- Acara -->
-    <div id="event" class="section" style="background-color: #faedcd;">
-        <h2>Waktu & Tempat</h2>
-        
+    <div id="event" class="section" style="background-color: #fdfcfb;">
+        <h2 style="font-family: 'Playfair Display'; color: #bfa37e;">Waktu & Tempat</h2>
         <div class="event-card">
             <h3>Akad Nikah</h3>
             <p>08:00 - 10:00 WIB</p>
-            <p>Masjid Raya Kota</p>
+            <hr style="border: 0.5px solid #eee; margin: 15px 0;">
+            <p><strong>Masjid Raya Kota</strong></p>
         </div>
-
         <div class="event-card">
             <h3>Resepsi</h3>
             <p>11:00 - 13:00 WIB</p>
-            <p>Gedung Serbaguna Utama</p>
+            <hr style="border: 0.5px solid #eee; margin: 15px 0;">
+            <p><strong>Gedung Serbaguna Utama</strong></p>
         </div>
-
-        <a href="https://maps.google.com" class="btn">Buka Google Maps</a>
-    </div>
-
-    <!-- RSVP -->
-    <div id="rsvp" class="section">
-        <h2>Konfirmasi Kehadiran</h2>
-        <p>Mohon konfirmasi kehadiran Anda melalui WhatsApp:</p>
-        <a href="https://wa.me/628123456789?text=Halo,%20saya%20akan%20hadir" class="btn" style="background-color: #25d366;">Konfirmasi via WhatsApp</a>
+        <a href="https://maps.google.com" class="btn">LIHAT LOKASI</a>
     </div>
 
     <footer>
-        Dibuat dengan ❤️ untuk Nama Kalian
+        WITH LOVE BY NAMA KALIAN © 2026
     </footer>
 
-    <!-- Audio Kontrol -->
-    <audio id="myAudio" loop>
-        <source src="wedding-song.mp3" type="audio/mpeg">
-    </audio>
-    <div id="music-control" onclick="toggleMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #84a59d; color: white; padding: 15px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
-        🎵
-    </div>
+    <audio id="myAudio" loop><source src="wedding-song.mp3" type="audio/mpeg"></audio>
+    <div id="music-control" onclick="toggleMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: #bfa37e; color: white; padding: 15px; border-radius: 50%; cursor: pointer;">🎵</div>
 
-    <!-- Script Countdown -->
     <script>
         var countDownDate = new Date("August 25, 2026 08:00:00").getTime();
         var x = setInterval(function() {
@@ -192,15 +161,8 @@
             document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000);
-            if (distance < 0) {
-                clearInterval(x);
-                document.querySelector(".countdown-container").innerHTML = "<h3>HARI BAHAGIA TELAH TIBA!</h3>";
-            }
         }, 1000);
-    </script>
 
-    <!-- Script Music -->
-    <script>
         var audio = document.getElementById("myAudio");
         var isPlaying = false;
         function toggleMusic() {
@@ -211,6 +173,5 @@
             if (!isPlaying) { audio.play(); isPlaying = true; }
         }, { once: true });
     </script>
-
 </body>
 </html>
