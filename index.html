@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
 <title>Undangan Pernikahan</title>
 
 <style>
@@ -14,7 +13,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== ENVELOPE OPENING ===== */
+/* ===== OPENING ===== */
 .opening{
   position:fixed;
   inset:0;
@@ -23,6 +22,7 @@ body{
   justify-content:center;
   align-items:center;
   z-index:999;
+  cursor:pointer;
 }
 
 .envelope{
@@ -30,7 +30,6 @@ body{
   height:140px;
   background:#f3efe9;
   position:relative;
-  cursor:pointer;
   box-shadow:0 10px 40px rgba(0,0,0,.4);
 }
 
@@ -47,7 +46,7 @@ body{
   transform:rotateX(180deg);
 }
 
-/* ===== BLUR TRANSITION ===== */
+/* ===== WRAPPER ===== */
 .wrapper{
   filter:blur(20px);
   transition:1.5s;
@@ -56,9 +55,9 @@ body{
   filter:blur(0);
 }
 
-/* ===== SLIDE ===== */
+/* ===== SLIDES ===== */
 .slide{
-  height:100vh;
+  min-height:110vh;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -67,18 +66,20 @@ body{
   transition:1.5s;
   position:relative;
 }
+
 .slide img{
   width:100%;
   max-width:420px;
   border-radius:20px;
   box-shadow:0 20px 60px rgba(0,0,0,.6);
 }
+
 .slide.show{
   opacity:1;
   transform:scale(1);
 }
 
-/* ===== GUEST NAME ===== */
+/* ===== NAMA TAMU ===== */
 .guest{
   position:absolute;
   bottom:22%;
@@ -90,6 +91,7 @@ body{
   opacity:0;
   transition:1.5s;
 }
+
 .guest.show{
   opacity:1;
 }
@@ -105,6 +107,7 @@ body{
   background:#2c3e2f;
   color:#fff;
   text-decoration:none;
+  font-weight:600;
 }
 
 /* ===== FLOWER ===== */
@@ -117,6 +120,7 @@ body{
   opacity:.6;
   animation:fall linear infinite;
 }
+
 @keyframes fall{
   to{ transform:translateY(110vh) rotate(360deg);}
 }
@@ -135,17 +139,17 @@ body{
 <div class="wrapper" id="wrapper">
 
 <!-- SLIDES -->
-<div class="slide"><img src="1.png"></div>
+<div class="slide"><img src="1.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+1'"></div>
 
 <div class="slide">
-  <img src="2.png">
+  <img src="2.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+2'">
   <div class="guest" id="guestName"></div>
 </div>
 
-<div class="slide"><img src="3.png"></div>
+<div class="slide"><img src="3.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+3'"></div>
 
 <div class="slide">
-  <img src="4.png">
+  <img src="4.png" onerror="this.src='https://via.placeholder.com/400x700?text=Slide+4'">
   <a class="location-btn"
      href="https://maps.app.goo.gl/nVPUV6W1P7WzZBEG8"
      target="_blank">
@@ -157,16 +161,16 @@ body{
 
 <!-- MUSIC -->
 <audio id="music" loop>
-  <source src="wedding-song.mp3">
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
 <script>
-// ===== GUEST =====
-const params = new URLSearchParams(location.search);
+// ===== AMBIL NAMA TAMU =====
+const params = new URLSearchParams(window.location.search);
 const guest = params.get("to") || "Tamu Undangan";
 document.getElementById("guestName").innerText = guest;
 
-// ===== START =====
+// ===== START OPENING =====
 function start(){
   document.getElementById("env").classList.add("open");
 
@@ -174,41 +178,55 @@ function start(){
     document.querySelector(".opening").style.display="none";
     document.getElementById("wrapper").classList.add("show");
     fadeMusic();
+    showSlides();
   },800);
 }
 
-// ===== MUSIC FADE IN =====
+// ===== MUSIC FADE =====
 function fadeMusic(){
-  let audio=document.getElementById("music");
-  audio.volume=0;
-  audio.play();
-  let i=setInterval(()=>{
-    if(audio.volume<1){
-      audio.volume+=0.05;
-    } else clearInterval(i);
+  const audio = document.getElementById("music");
+  audio.volume = 0;
+  audio.play().catch(()=>{});
+  let vol = 0;
+  const fade = setInterval(()=>{
+    if(vol < 1){
+      vol += 0.05;
+      audio.volume = vol;
+    } else clearInterval(fade);
   },200);
 }
 
-// ===== SCROLL =====
-const slides=document.querySelectorAll('.slide');
-window.addEventListener('scroll',()=>{
-  slides.forEach(s=>{
-    if(s.getBoundingClientRect().top < window.innerHeight-100){
-      s.classList.add('show');
-      let g=s.querySelector('.guest');
+// ===== TAMPILKAN SLIDE AWAL =====
+function showSlides(){
+  document.querySelectorAll('.slide')[0].classList.add('show');
+}
+
+// ===== SCROLL ANIMATION =====
+window.addEventListener('scroll', ()=>{
+  document.querySelectorAll('.slide').forEach(slide=>{
+    if(slide.getBoundingClientRect().top < window.innerHeight - 100){
+      slide.classList.add('show');
+      const g = slide.querySelector('.guest');
       if(g) g.classList.add('show');
     }
   });
 });
 
-// ===== FLOWER =====
+// ===== FLOWER EFFECT =====
 for(let i=0;i<25;i++){
-  let f=document.createElement("div");
+  const f=document.createElement("div");
   f.className="flower";
   f.style.left=Math.random()*100+"vw";
   f.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(f);
 }
+
+// ===== AUTO BYPASS kalau opening gagal =====
+setTimeout(()=>{
+  document.querySelector(".opening").style.display="none";
+  document.getElementById("wrapper").classList.add("show");
+  showSlides();
+},4000);
 </script>
 
 </body>
